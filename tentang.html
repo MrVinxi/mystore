@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Melvin Fondation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #f1c40f;
+            --text-dark: #34495e;
+            --text-light: #ecf0f1;
+            --bg-dark: #2c3e50;
+            --bg-light: #f4f7f9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.7; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        /* Navigasi */
+        header { background-color: var(--bg-dark); color: var(--text-light); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; max-width: 1400px; margin: auto; }
+        .logo a { font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--text-light); text-decoration: none; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 1rem; transition: color 0.3s ease, transform 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 3px; background-color: var(--accent-color); bottom: -5px; left: 0; transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .nav-links a:hover { color: var(--accent-color); }
+        .nav-links a:hover::after { width: 100%; }
+        .cart-icon { position: relative; }
+        .cart-count { position: absolute; top: -8px; right: -12px; background-color: var(--secondary-color); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: bold; animation: popIn 0.3s ease-in-out; }
+        
+        /* Main Content */
+        .section { padding: 5rem 5%; max-width: 1000px; margin: auto; }
+        .section-title { font-family: 'Oswald', sans-serif; font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary-color); position: relative; animation: slideInFromTop 1s ease-out; }
+        .section-title::after { content: ''; position: absolute; width: 80px; height: 4px; background-color: var(--secondary-color); bottom: -15px; left: 50%; transform: translateX(-50%); }
+        
+        .about-card { background: var(--text-light); padding: 3rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); animation: fadeIn 1s ease-in-out; }
+        .about-card p { font-size: 1.1rem; text-align: justify; margin-bottom: 1.5rem; }
+
+        .mission-vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .mv-card { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 5px solid var(--accent-color); opacity: 0; transform: scale(0.9); animation: popIn 0.8s ease forwards; }
+        .mv-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .mv-card:nth-child(1) { animation-delay: 0.2s; }
+        .mv-card:nth-child(2) { animation-delay: 0.4s; }
+        .mv-card h4 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.8rem; }
+        .mv-card p { font-size: 1rem; color: #555; }
+        
+        /* Footer */
+        footer { background-color: var(--bg-dark); color: var(--text-light); text-align: center; padding: 2rem 5%; }
+        
+        /* Animasi */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes slideInFromTop { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">Melvin Fondation</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tentang.html">Tentang</a></li>
+                    <li><a href="harga.html">Harga</a></li>
+                    <li class="cart-icon"><a href="keranjang.html">Keranjang</a><span id="cart-count" class="cart-count">0</span></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2 class="section-title">Tentang Melvin Fondation</h2>
+            <div class="about-card">
+                <p>Melvin Fondation adalah sebuah entitas digital yang lahir dari semangat untuk memberikan solusi teknologi terbaik bagi setiap individu dan bisnis. Kami percaya bahwa teknologi harus dapat diakses oleh semua orang, dari pebisnis kecil hingga kreator konten, tanpa harus pusing dengan hal teknis.</p>
+                <p>Sejak didirikan, kami fokus pada penyediaan layanan hosting, jasa pembuatan website profesional, dan produk digital inovatif lainnya. Kami berdedikasi untuk memberikan pengalaman terbaik melalui layanan yang cepat, andal, dan dukungan pelanggan yang selalu siap membantu.</p>
+                <p>Tim kami terdiri dari para ahli yang bersemangat di bidangnya. Kami terus belajar dan berinovasi untuk memastikan setiap produk dan layanan kami selalu berada di garis terdepan teknologi.</p>
+            </div>
+            <div class="mission-vision-grid">
+                <div class="mv-card">
+                    <h4>Misi Kami</h4>
+                    <p>Menjadi mitra tepercaya dalam mewujudkan visi digital klien dengan menyediakan layanan berkualitas tinggi yang terjangkau dan mudah digunakan.</p>
+                </div>
+                <div class="mv-card">
+                    <h4>Visi Kami</h4>
+                    <p>Menciptakan ekosistem digital yang inklusif, di mana setiap ide dapat diwujudkan menjadi sesuatu yang nyata dan berdampak positif.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Melvin Fondation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartCountElement = document.getElementById('cart-count');
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartCountElement.textContent = cart.length;
+            }
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
