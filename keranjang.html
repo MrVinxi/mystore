@@ -18,18 +18,20 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.7; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
-        /* Navigasi */
+        
+        /* Navigasi Desktop */
         header { background-color: var(--bg-dark); color: var(--text-light); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; max-width: 1400px; margin: auto; }
         .logo a { font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--text-light); text-decoration: none; letter-spacing: 1px; }
-        .nav-links { display: flex; list-style: none; }
+        .nav-links { display: flex; list-style: none; transition: transform 0.5s ease-in-out; }
         .nav-links li { margin-left: 2rem; }
-        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 1rem; transition: color 0.3s ease, transform 0.3s ease; position: relative; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 1rem; position: relative; transition: color 0.3s ease; }
         .nav-links a::after { content: ''; position: absolute; width: 0; height: 3px; background-color: var(--accent-color); bottom: -5px; left: 0; transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .nav-links a:hover { color: var(--accent-color); }
         .nav-links a:hover::after { width: 100%; }
         .cart-icon { position: relative; }
         .cart-count { position: absolute; top: -8px; right: -12px; background-color: var(--secondary-color); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: bold; animation: popIn 0.3s ease-in-out; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--text-light); }
         
         /* Main Content */
         .section { padding: 5rem 5%; max-width: 900px; margin: auto; }
@@ -64,6 +66,16 @@
         @keyframes slideInFromTop { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes modalSlideIn { from { transform: translateY(-100vh); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes fadeOutDown { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(20px); } }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: fixed; top: 0; right: -100%; width: 70%; height: 100%; background-color: var(--primary-color); padding-top: 5rem; text-align: center; transition: right 0.5s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+            .nav-links.active { display: flex; right: 0; }
+            .nav-links li { margin: 1.5rem 0; }
+            .hamburger { display: block; }
+            .nav-container { padding: 1rem 5%; }
+            .cart-count { right: -5px; }
+        }
     </style>
 </head>
 <body>
@@ -79,6 +91,9 @@
                     <li><a href="kontak.html">Kontak</a></li>
                 </ul>
             </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
@@ -137,7 +152,7 @@
                 } else {
                     cart.forEach((item, index) => {
                         const row = document.createElement('tr');
-                        row.dataset.index = index; // Menambahkan data-index untuk identifikasi
+                        row.dataset.index = index;
                         row.innerHTML = `
                             <td>${item.name}</td>
                             <td>Rp ${item.price.toLocaleString('id-ID')}</td>
@@ -148,16 +163,15 @@
                         cartItemsContainer.appendChild(row);
                         total += item.price;
                     });
-
-                    // Event listener dipasang setelah elemen dibuat
-                    document.querySelectorAll('.remove-btn').forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            const itemIndex = parseInt(e.currentTarget.dataset.index);
-                            removeItemFromCart(itemIndex);
-                        });
-                    });
                 }
                 totalPriceElement.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const itemIndex = parseInt(e.currentTarget.dataset.index);
+                        removeItemFromCart(itemIndex);
+                    });
+                });
             }
 
             function removeItemFromCart(index) {
@@ -166,7 +180,7 @@
                     cart.splice(index, 1);
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
-                    updateCartDisplay(); // Panggil fungsi ini untuk memperbarui tampilan
+                    updateCartDisplay();
                 }
             }
 
@@ -218,12 +232,22 @@
                 });
             }
 
-            // Inisialisasi awal
             updateCartDisplay();
             updateCartCount();
             if (checkoutButton) {
                 checkoutButton.addEventListener('click', handleCheckout);
             }
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
         });
     </script>
 </body>
