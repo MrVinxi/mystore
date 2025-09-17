@@ -1,0 +1,32 @@
+{
+  "namaLengkap": "Marvinando Praditya Putra Karyana",
+  "deskripsiDiri": "Halo! Saya Marvinando, seorang individu yang berdedikasi dan memiliki hasrat besar untuk belajar hal baru, khususnya di bidang teknologi dan kreatif. Saya percaya bahwa setiap tantangan adalah kesempatan untuk berkembang.",
+  "riwayatPendidikan": [
+    {
+      "tingkat": "SMK",
+      "namaSekolah": "[Nama SMK Anda]",
+      "tahun": "[Tahun Masuk] - [Tahun Lulus]"
+    },
+    {
+      "tingkat": "SMP",
+      "namaSekolah": "[Nama SMP Anda]",
+      "tahun": "[Tahun Masuk] - [Tahun Lulus]"
+    },
+    {
+      "tingkat": "SD",
+      "namaSekolah": "[Nama SD Anda]",
+      "tahun": "[Tahun Masuk] - [Tahun Lulus]"
+    },
+    {
+      "tingkat": "TK",
+      "namaSekolah": "[Nama TK Anda]",
+      "tahun": "[Tahun Masuk] - [Tahun Lulus]"
+    }
+  ],
+  "minatHobi": [
+    "Mengembangkan aplikasi",
+    "Desain grafis",
+    "Membaca buku fiksi ilmiah",
+    "Bermain game strategi"
+  ]
+}

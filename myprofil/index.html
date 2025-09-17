@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvinando - The Next Level Profile</title>
+    <style>
+        /* CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --latar-utama: #0f1c2b;
+            --warna-teks: #e0f7fa;
+            --warna-aksen: #00bcd4;
+            --warna-sorotan: #ffeb3b;
+            --gradasi-latar: linear-gradient(135deg, #0f1c2b 0%, #2c3e50 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradasi-latar);
+            color: var(--warna-teks);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Animasi Latar Belakang --- */
+        .animasi-lingkaran {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .lingkaran {
+            position: absolute;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 50%;
+            animation: move 20s linear infinite;
+        }
+
+        .lingkaran:nth-child(1) { width: 15vw; height: 15vw; top: 10%; left: 20%; animation-duration: 25s; }
+        .lingkaran:nth-child(2) { width: 25vw; height: 25vw; bottom: 5%; right: 15%; animation-duration: 20s; }
+        .lingkaran:nth-child(3) { width: 10vw; height: 10vw; top: 30%; right: 40%; animation-duration: 30s; }
+        .lingkaran:nth-child(4) { width: 20vw; height: 20vw; bottom: 20%; left: 30%; animation-duration: 18s; }
+
+        @keyframes move {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.2; }
+            25% { transform: translate(10vw, 15vh) scale(1.1) rotate(45deg); opacity: 0.3; }
+            50% { transform: translate(-5vw, 10vh) scale(0.9) rotate(90deg); opacity: 0.1; }
+            75% { transform: translate(15vw, -5vh) scale(1.2) rotate(135deg); opacity: 0.4; }
+            100% { transform: translate(0, 0) scale(1) rotate(180deg); opacity: 0.2; }
+        }
+
+        /* --- Konten Utama --- */
+        .container {
+            max-width: 900px;
+            width: 95%;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--warna-aksen);
+        }
+
+        .foto-profil {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--warna-sorotan);
+            box-shadow: 0 0 20px var(--warna-sorotan);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .foto-profil:hover {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 15px;
+            color: var(--warna-sorotan);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .slogan {
+            color: var(--warna-teks);
+            font-style: italic;
+        }
+
+        section {
+            padding: 20px 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--warna-aksen);
+            border-bottom: 2px solid var(--warna-sorotan);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--warna-sorotan);
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateX(10px);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- Animasi Masuk --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- Efek Hover pada Teks --- */
+        .efek-teks {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .efek-teks::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            background: var(--warna-sorotan);
+            transition: width .3s ease;
+        }
+
+        .efek-teks:hover::after {
+            width: 100%;
+        }
+
+        /* --- Efek Parallax --- */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="animasi-lingkaran">
+        <div class="lingkaran"></div>
+        <div class="lingkaran"></div>
+        <div class="lingkaran"></div>
+        <div class="lingkaran"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="marvin/IMG20250812045049.jpg" alt="Foto Marvinando" class="foto-profil">
+            <h1><span class="efek-teks">Marvinando Praditya Putra Karyana</span></h1>
+            <p class="slogan fade-in">Web Developer | Kreator Konten | Seniman Digital</p>
+        </header>
+
+        <section id="tentang-saya">
+            <h2 class="fade-in">Tentang Saya</h2>
+            <p class="fade-in">
+                Halo! Nama saya Marvinando. Saya memiliki passion yang besar dalam menciptakan hal-hal baru, terutama dalam dunia digital. Saya senang bereksplorasi dan terus belajar untuk menguasai teknologi terbaru.
+            </p>
+        </section>
+
+        <section id="pendidikan">
+            <h2 class="fade-in">Riwayat Pendidikan</h2>
+            <ul>
+                <li class="fade-in">
+                    <strong>Sekolah Menengah Kejuruan (SMK)</strong><br>
+                    <span class="fade-in">Jurusan [Teknik Komputer & Jaringan], [SMK MUHAMMADIYAH 1 PANDAAN]</span>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.2s;">
+                    <strong>Sekolah Menengah Pertama (SMP)</strong><br>
+                    <span class="fade-in"> [SMP AL-BERR, SMP ISLAM SUKOREJO]</span>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.4s;">
+                    <strong>Sekolah Dasar (SD)</strong><br>
+                    <span class="fade-in"> [SDN KUTOREJO 1 PANDAAN]</span>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.6s;">
+                    <strong>Taman Kanak-Kanak (TK)</strong><br>
+                    <span class="fade-in"> [-]</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="hobi">
+            <h2 class="fade-in">Minat & Hobi</h2>
+            <p class="fade-in">
+                Saya memiliki minat di bidang **pemrograman**, **desain grafis**, dan **fotografi**. Di waktu luang, saya suka <span class="efek-teks">membuat ilustrasi digital</span> dan <span class="efek-teks">menjelajahi alam</span>.
+            </p>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section, header');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Ganti placeholder foto dengan foto asli
+            const fotoProfil = document.querySelector('.foto-profil');
+            fotoProfil.src = 'URL_FOTO_ANDA.jpg'; // Ganti dengan URL foto asli Anda
+        });
+    </script>
+
+</body>
+</html>
