@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melvin Fondation - Solusi Digital Terbaik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #262626;
+            --secondary-color: #A98E5E;
+            --accent-color: #F8B500;
+            --text-dark: #333333;
+            --text-light: #f4f4f4;
+            --bg-dark: #121212;
+            --bg-light: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.8; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        
+        /* General Styles */
+        .container { max-width: 1200px; margin: auto; padding: 0 2rem; }
+        .section { padding: 8rem 0; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 4rem; color: var(--primary-color); position: relative; }
+        .section-title::after { content: ''; position: absolute; width: 80px; height: 3px; background-color: var(--secondary-color); bottom: -1rem; left: 50%; transform: translateX(-50%); }
+
+        /* Navigasi */
+        header { background-color: var(--bg-dark); color: var(--text-light); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; }
+        .logo a { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text-light); text-decoration: none; font-weight: 700; }
+        .nav-links { display: flex; list-style: none; transition: transform 0.5s ease-in-out; }
+        .nav-links li { margin-left: 3rem; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 1rem; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background-color: var(--secondary-color); bottom: -5px; left: 0; transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .nav-links a:hover { color: var(--secondary-color); }
+        .nav-links a:hover::after { width: 100%; }
+        .cart-icon { position: relative; }
+        .cart-count { position: absolute; top: -10px; right: -15px; background-color: var(--accent-color); color: var(--primary-color); border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: bold; animation: popIn 0.3s ease-in-out; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--text-light); }
+        
+        /* Hero Section */
+        .hero { position: relative; height: 90vh; overflow: hidden; display: flex; align-items: center; text-align: left; color: var(--text-dark); background: linear-gradient(180deg, #ffffff, #f0f0f0); padding-left: 10%; }
+        .hero-bg-text { position: absolute; font-size: 20vw; color: rgba(0,0,0,0.05); font-family: 'Playfair Display', serif; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; user-select: none; }
+        .hero-content { position: relative; z-index: 2; max-width: 600px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5rem); line-height: 1.2; margin-bottom: 1.5rem; opacity: 0; transform: translateY(30px); animation: fadeInUp 1s forwards; }
+        .hero p { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; opacity: 0; transform: translateY(30px); animation: fadeInUp 1s forwards 0.3s; }
+        
+        /* Features Section */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .feature-card { background-color: var(--bg-light); padding: 3rem; border-radius: 10px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); text-align: center; border-left: 4px solid var(--secondary-color); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: translateY(50px); }
+        .feature-card:hover { transform: translateY(-15px) scale(1.02); }
+        .feature-card .icon { font-size: 3.5rem; color: var(--accent-color); margin-bottom: 1.5rem; }
+        .feature-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 1rem; color: #777; }
+        
+        /* Footer */
+        footer { background-color: var(--bg-dark); color: var(--text-light); text-align: center; padding: 2.5rem 2rem; }
+        
+        /* Animasi */
+        .fade-in { opacity: 0; transition: opacity 1s ease-out, transform 1s ease-out; }
+        .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--primary-color); padding-top: 5rem; text-align: center; transition: right 0.5s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+            .nav-links.active { display: flex; right: 0; }
+            .nav-links li { margin: 1.5rem 0; }
+            .hamburger { display: block; }
+            .nav-container { padding: 1rem 2rem; }
+            .hero { text-align: center; padding: 0 2rem; }
+            .hero-content { max-width: none; }
+            .section-title { font-size: 2.5rem; }
+            .feature-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">Melvin Fondation</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tentang.html">Tentang</a></li>
+                    <li><a href="harga.html">Harga</a></li>
+                    <li class="cart-icon"><a href="keranjang.html">Keranjang</a><span id="cart-count" class="cart-count">0</span></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg-text">Melvin</div>
+            <div class="hero-content">
+                <h1>Solusi Digital untuk Bisnis Modern</h1>
+                <p>Melayani Jasa Pembuatan Website, Hosting Cepat, dan Kebutuhan Digital Lainnya. Kualitas & Kecepatan Adalah Prioritas Kami.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Mengapa Kami Berbeda?</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-server icon"></i>
+                        <h3>Performa Maksimal</h3>
+                        <p>Didukung oleh infrastruktur server premium dengan jaminan uptime 99.9% untuk memastikan website Anda selalu tersedia.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-headset icon"></i>
+                        <h3>Dukungan Penuh</h3>
+                        <p>Tim ahli kami siap membantu 24/7. Kami tidak hanya menyediakan produk, tapi juga solusi untuk setiap masalah Anda.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <i class="fas fa-lock icon"></i>
+                        <h3>Keamanan Terjamin</h3>
+                        <p>Dilengkapi dengan sertifikat SSL gratis, proteksi DDoS, dan backup harian untuk menjaga data Anda tetap aman.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Melvin Fondation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartCountElement = document.getElementById('cart-count');
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartCountElement.textContent = cart.length;
+            }
+            updateCartCount();
+
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Scroll-based animation
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.5 };
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>

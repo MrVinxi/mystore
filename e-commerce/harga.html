@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Harga - Melvin Fondation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #262626;
+            --secondary-color: #A98E5E;
+            --accent-color: #F8B500;
+            --text-dark: #333333;
+            --text-light: #f4f4f4;
+            --bg-dark: #121212;
+            --bg-light: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.8; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        
+        /* Navigasi */
+        header { background-color: var(--bg-dark); color: var(--text-light); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; }
+        .logo a { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text-light); text-decoration: none; font-weight: 700; }
+        .nav-links { display: flex; list-style: none; transition: transform 0.5s ease-in-out; }
+        .nav-links li { margin-left: 3rem; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 1rem; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background-color: var(--secondary-color); bottom: -5px; left: 0; transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .nav-links a:hover { color: var(--secondary-color); }
+        .nav-links a:hover::after { width: 100%; }
+        .cart-icon { position: relative; }
+        .cart-count { position: absolute; top: -10px; right: -15px; background-color: var(--accent-color); color: var(--primary-color); border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: bold; animation: popIn 0.3s ease-in-out; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--text-light); }
+
+        /* General Styles */
+        .container { max-width: 1200px; margin: auto; padding: 0 2rem; }
+        .section { padding: 8rem 0; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 4rem; color: var(--primary-color); position: relative; }
+        .section-title::after { content: ''; position: absolute; width: 80px; height: 3px; background-color: var(--secondary-color); bottom: -1rem; left: 50%; transform: translateX(-50%); }
+
+        /* Produk */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .product-card { background: var(--bg-light); border-radius: 10px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); text-align: center; padding: 3rem 1.5rem; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: translateY(50px); }
+        .product-card.fade-in.is-visible { transform: translateY(0) scale(1.02); }
+        .product-card:hover { transform: translateY(-15px) scale(1.02); }
+        .product-card h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .product-card p { font-size: 1rem; color: #777; margin-bottom: 1.5rem; }
+        .product-card .price { font-size: 2.5rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 2rem; }
+        .add-to-cart { background-color: var(--secondary-color); color: white; border: none; padding: 15px 40px; cursor: pointer; border-radius: 50px; font-size: 1rem; font-weight: 600; text-transform: uppercase; transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(169, 142, 94, 0.4); }
+        .add-to-cart:hover { background-color: #8D744A; transform: scale(1.05) translateY(-3px); box-shadow: 0 6px 20px rgba(169, 142, 94, 0.6); }
+
+        /* Footer */
+        footer { background-color: var(--bg-dark); color: var(--text-light); text-align: center; padding: 2.5rem 2rem; }
+        
+        /* Animasi */
+        .fade-in { opacity: 0; transition: opacity 1s ease-out, transform 1s ease-out; }
+        .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .cart-item-anim { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); background-color: var(--secondary-color); color: white; padding: 5px 10px; border-radius: 50%; font-size: 0.8rem; animation: addCartPop 0.8s forwards; z-index: 10; }
+        @keyframes addCartPop { 0% { transform: scale(0) translate(-50%, -50%); opacity: 1; } 50% { transform: scale(1.5) translate(-50%, -50%); opacity: 1; } 100% { transform: scale(0.5) translate(-50%, -150%); opacity: 0; } }
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--primary-color); padding-top: 5rem; text-align: center; transition: right 0.5s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+            .nav-links.active { display: flex; right: 0; }
+            .nav-links li { margin: 1.5rem 0; }
+            .hamburger { display: block; }
+            .nav-container { padding: 1rem 2rem; }
+            .section-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">Melvin Fondation</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tentang.html">Tentang</a></li>
+                    <li><a href="harga.html">Harga</a></li>
+                    <li class="cart-icon"><a href="keranjang.html">Keranjang</a><span id="cart-count" class="cart-count">0</span></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Daftar Harga & Paket</h2>
+                <div class="product-grid" id="product-list">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Melvin Fondation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Hosting Paket Bronze", price: 150000, description: "Hosting cepat dan stabil untuk website pribadi.", category: "hosting" },
+            { id: 2, name: "Hosting Paket Silver", price: 300000, description: "Hosting untuk blog dan toko online skala kecil.", category: "hosting" },
+            { id: 3, name: "Hosting Paket Gold", price: 500000, description: "Hosting premium untuk website dengan traffic tinggi.", category: "hosting" },
+            { id: 4, name: "Jasa Website Portofolio", price: 800000, description: "Jasa pembuatan website portofolio profesional.", category: "jasa" },
+            { id: 5, name: "Jasa Website E-commerce", price: 2500000, description: "Jasa pembuatan toko online lengkap dengan sistem pembayaran.", category: "jasa" },
+            { id: 6, name: "Jasa Website Custom", price: 5000000, description: "Jasa pembuatan website sesuai kebutuhan dan spesifikasi Anda.", category: "jasa" },
+            { id: 7, name: "Game Developer Kit A", price: 50000, description: "Kit starter untuk belajar membuat game.", category: "game" },
+            { id: 8, name: "Game Developer Kit B", price: 100000, description: "Aset dan template untuk game 2D.", category: "game" },
+            { id: 9, name: "Game Developer Kit C", price: 200000, description: "Aset dan tools untuk pengembangan game 3D.", category: "game" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const productList = document.getElementById('product-list');
+            const cartCountElement = document.getElementById('cart-count');
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartCountElement.textContent = cart.length;
+            }
+
+            function displayProducts() {
+                if (!productList) return;
+                productList.innerHTML = '';
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card', 'fade-in');
+                    productCard.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p class="price">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        <button class="add-to-cart" data-id="${product.id}">Tambah ke Keranjang</button>
+                    `;
+                    productList.appendChild(productCard);
+                });
+
+                document.querySelectorAll('.add-to-cart').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const productId = parseInt(e.target.dataset.id);
+                        addToCart(productId, e.target);
+                    });
+                });
+            }
+
+            function addToCart(productId, buttonElement) {
+                const productToAdd = products.find(p => p.id === productId);
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (productToAdd) {
+                    cart.push(productToAdd);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item-anim');
+                    cartItem.textContent = '+1';
+                    buttonElement.appendChild(cartItem);
+                    setTimeout(() => {
+                        cartItem.remove();
+                    }, 800);
+                }
+            }
+
+            updateCartCount();
+            displayProducts();
+
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Scroll-based animation
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.5 };
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
