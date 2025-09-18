@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melvin Fondation - Daftar Harga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40; /* Dark Teal */
+            --secondary-color: #ff6f00; /* Bright Orange */
+            --background-color: #f0f4f7; /* Light Gray-Blue */
+            --card-background: #ffffff;
+            --text-color: #263238; /* Dark Gray */
+            --light-text: #78909c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--card-background);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: var(--card-background);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--card-background);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        main {
+            padding: 3rem 1.5rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .harga-section {
+            text-align: center;
+        }
+
+        .harga-section h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        #price-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .price-item {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .price-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-item h2 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .price-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--card-background);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tampilan Mobile */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%);
+            }
+
+            nav.active {
+                display: flex;
+                transform: translateY(0);
+            }
+            
+            nav a {
+                margin: 0;
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .harga-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Melvin Fondation</div>
+        <nav>
+            <a href="home.html">Beranda</a>
+            <a href="harga.html" class="active">Daftar Harga</a>
+        </nav>
+        <div class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <main class="harga-section">
+        <h1>Daftar Harga Layanan</h1>
+        <div id="price-list">
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Melvin Fondation. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Data layanan dimasukkan langsung sebagai objek JavaScript
+        const servicesData = {
+            "services": [
+                {
+                    "name": "Ganti LCD",
+                    "price": "IDR 150.000 - IDR 200.000"
+                },
+                {
+                    "name": "Ganti Tombol Power & Volume",
+                    "price": "IDR 75.000"
+                },
+                {
+                    "name": "Ganti Baterai",
+                    "price": "IDR 50.000 - IDR 70.000"
+                }
+            ]
+        };
+
+        const priceListDiv = document.getElementById('price-list');
+        servicesData.services.forEach(service => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('price-item');
+            itemDiv.innerHTML = `
+                <h2>${service.name}</h2>
+                <p>${service.price}</p>
+            `;
+            priceListDiv.appendChild(itemDiv);
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
