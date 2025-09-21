@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Akun | Hope Indonesia Roleplay</title>
+    <style>
+        @font-face {
+            font-family: 'SanAndreas';
+            src: url('https://fonts.cdnfonts.com/s/17232/San_Andreas.woff') format('woff');
+        }
+
+        :root {
+            --text-color: #ffffff;
+            --container-bg: rgba(0, 0, 0, 0.4);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --highlight-color: #f7a01d;
+            --info-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'SanAndreas', sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-image: url('https://staticg.sportskeeda.com/editor/2021/08/c3f38-16289846884763-800.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: var(--container-bg);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-family: 'SanAndreas', sans-serif;
+            color: var(--highlight-color);
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        #accountInfo {
+            text-align: left;
+            margin-top: 30px;
+            font-family: sans-serif;
+        }
+
+        #accountInfo p {
+            background: var(--info-bg);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #accountInfo p:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #accountInfo strong {
+            color: var(--highlight-color);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.success {
+            color: #a7f3d0;
+        }
+
+        .message.error {
+            color: #fca5a5;
+        }
+
+        button {
+            background: #ef4444;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-family: 'SanAndreas', sans-serif;
+            text-shadow: none;
+            transition: transform 0.2s, background-color 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+        
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+            transition: color 0.3s ease;
+            font-family: 'SanAndreas', sans-serif;
+        }
+
+        a:hover {
+            color: var(--highlight-color);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Informasi Akun</h1>
+        <div id="accountInfo">
+            <p><strong>IP Address:</strong> <span id="ipAddress">Memuat...</span></p>
+            <p><strong>Nama UCP:</strong> <span id="ucpName">Memuat...</span></p>
+            <p><strong>Verify Code:</strong> <span id="verifyCode">Memuat...</span></p>
+        </div>
+        <p id="message" class="message"></p>
+        <br>
+        <a href="home.html">Kembali</a>
+        <br>
+        <button id="deleteAccountBtn">Hapus Akun</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ipAddressSpan = document.getElementById('ipAddress');
+            const ucpNameSpan = document.getElementById('ucpName');
+            const verifyCodeSpan = document.getElementById('verifyCode');
+            const messageDiv = document.getElementById('message');
+            const deleteBtn = document.getElementById('deleteAccountBtn');
+
+            async function getAccountInfo() {
+                messageDiv.textContent = 'Memuat info akun...';
+                messageDiv.style.color = '#fff';
+
+                try {
+                    const response = await fetch('koneksi.php?action=get-account');
+                    const result = await response.json();
+
+                    if (result.success) {
+                        ipAddressSpan.textContent = result.ip_address;
+                        ucpNameSpan.textContent = result.ucp;
+                        verifyCodeSpan.textContent = result.verifycode;
+                        messageDiv.textContent = '';
+                    } else {
+                        messageDiv.textContent = 'Akun tidak ditemukan atau telah dihapus.';
+                        messageDiv.style.color = '#fca5a5';
+                        ipAddressSpan.textContent = 'Tidak ada';
+                        ucpNameSpan.textContent = 'Tidak ada';
+                        verifyCodeSpan.textContent = 'Tidak ada';
+                    }
+                } catch (error) {
+                    messageDiv.textContent = 'Gagal memuat info akun.';
+                    messageDiv.style.color = '#fca5a5';
+                }
+            }
+
+            deleteBtn.addEventListener('click', () => {
+                messageDiv.textContent = 'Untuk menghapus akun, silakan hubungi pengurus atau admin.';
+                messageDiv.style.color = '#fca5a5';
+            });
+
+            getAccountInfo();
+        });
+    </script>
+</body>
+</html>
