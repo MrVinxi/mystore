@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA-MP UCP Website</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #111827;
+            color: #E5E7EB;
+        }
+        .page-section {
+            display: none;
+        }
+        .active-section {
+            display: block;
+        }
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .message-box.show {
+            opacity: 1;
+        }
+        .success {
+            background-color: #10B981;
+            color: #fff;
+        }
+        .error {
+            background-color: #EF4444;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4">
+
+    <!-- Message Box -->
+    <div id="message-box" class="message-box"></div>
+
+    <!-- Main Container -->
+    <div class="bg-gray-800 rounded-xl shadow-lg p-6 md:p-10 w-full max-w-4xl border border-gray-700">
+
+        <!-- Navigation -->
+        <nav class="flex justify-center md:justify-start space-x-2 md:space-x-4 mb-8">
+            <button onclick="showPage('home')" class="nav-button bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg transition-colors">Beranda</button>
+            <button onclick="showPage('register')" class="nav-button bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg transition-colors">Daftar UCP</button>
+            <button onclick="showPage('view')" class="nav-button bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg transition-colors">Lihat UCP</button>
+        </nav>
+
+        <!-- Main Content Sections -->
+        <div id="home" class="page-section active-section">
+            <h1 class="text-3xl md:text-5xl font-bold text-center mb-4 text-green-400">Selamat Datang di UCP GTA SA-MP!</h1>
+            <p class="text-center text-lg md:text-xl text-gray-400 mb-8">Ini adalah website User Control Panel resmi untuk server kami.</p>
+            <div class="bg-gray-700 rounded-lg p-6 shadow-md border border-gray-600">
+                <p class="text-gray-300 leading-relaxed">
+                    Di sini, Anda dapat mengelola akun Anda, mendaftar untuk menjadi pemain baru, dan melihat detail akun Anda. Setiap perangkat hanya dapat memiliki satu akun UCP. Nikmati pengalaman roleplay terbaik di server kami!
+                </p>
+            </div>
+        </div>
+
+        <div id="register" class="page-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-green-400">Daftar Akun UCP</h2>
+            <form id="register-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-300">Nama Pengguna</label>
+                    <input type="text" id="username" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-green-500 focus:ring-green-500 text-white p-2" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-300">Kata Sandi</label>
+                    <input type="password" id="password" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-green-500 focus:ring-green-500 text-white p-2" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                    <input type="email" id="email" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-green-500 focus:ring-green-500 text-white p-2" required>
+                </div>
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition-colors">Daftar</button>
+            </form>
+        </div>
+
+        <div id="view" class="page-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-green-400">Detail Akun UCP Anda</h2>
+            <div id="ucp-details" class="bg-gray-700 rounded-lg p-6 shadow-md border border-gray-600">
+                <p class="text-gray-400 text-center">Data akun Anda akan muncul di sini setelah Anda mendaftar.</p>
+            </div>
+            <div id="ucp-not-found" class="bg-yellow-800 text-yellow-100 rounded-lg p-4 mt-4 text-center hidden">
+                <p>Anda belum memiliki akun yang terdaftar di perangkat ini.</p>
+            </div>
+            <div id="ucp-actions" class="mt-6 flex justify-center space-x-4 hidden">
+                <button onclick="deleteAccount()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md transition-colors">Hapus Akun</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to show a message box
+        function showMessage(message, type = 'success') {
+            const msgBox = document.getElementById('message-box');
+            msgBox.textContent = message;
+            msgBox.className = `message-box show ${type}`;
+            setTimeout(() => {
+                msgBox.className = msgBox.className.replace('show', '');
+            }, 3000);
+        }
+
+        // Function to handle page navigation
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active-section'));
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active-section');
+            }
+
+            // Specific logic for the view page
+            if (pageId === 'view') {
+                updateViewPage();
+            }
+        }
+
+        // Check if an account is already registered on this device
+        function isRegistered() {
+            return localStorage.getItem('ucpAccount') !== null;
+        }
+
+        // Function to update the view page content
+        function updateViewPage() {
+            const ucpDetails = document.getElementById('ucp-details');
+            const ucpNotFound = document.getElementById('ucp-not-found');
+            const ucpActions = document.getElementById('ucp-actions');
+            const registerPage = document.getElementById('register');
+
+            if (isRegistered()) {
+                const account = JSON.parse(localStorage.getItem('ucpAccount'));
+                ucpDetails.innerHTML = `
+                    <div class="space-y-4">
+                        <p class="text-lg"><span class="font-bold text-gray-200">Nama Pengguna:</span> ${account.username}</p>
+                        <p class="text-lg"><span class="font-bold text-gray-200">Kata Sandi:</span> ${account.password}</p>
+                        <p class="text-lg"><span class="font-bold text-gray-200">Email:</span> ${account.email}</p>
+                    </div>
+                `;
+                ucpDetails.classList.remove('hidden');
+                ucpNotFound.classList.add('hidden');
+                ucpActions.classList.remove('hidden');
+                registerPage.classList.add('hidden'); // Hide register page if an account exists
+            } else {
+                ucpDetails.innerHTML = `<p class="text-gray-400 text-center">Data akun Anda akan muncul di sini setelah Anda mendaftar.</p>`;
+                ucpDetails.classList.remove('hidden');
+                ucpNotFound.classList.remove('hidden');
+                ucpActions.classList.add('hidden');
+                registerPage.classList.remove('hidden'); // Show register page if no account exists
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            if (isRegistered()) {
+                showMessage('Anda sudah memiliki akun di perangkat ini. Tidak bisa mendaftar lebih dari satu.', 'error');
+                return;
+            }
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+
+            // Simulate saving data to a "database" (localStorage)
+            const accountData = {
+                username: username,
+                password: password,
+                email: email
+            };
+
+            localStorage.setItem('ucpAccount', JSON.stringify(accountData));
+            
+            showMessage('Pendaftaran berhasil! Akun Anda telah dibuat.', 'success');
+            
+            // Redirect to view page after successful registration
+            setTimeout(() => {
+                showPage('view');
+            }, 1000);
+        });
+
+        // Function to delete the local account
+        function deleteAccount() {
+            if (confirm('Apakah Anda yakin ingin menghapus akun ini?')) {
+                localStorage.removeItem('ucpAccount');
+                showMessage('Akun berhasil dihapus.', 'success');
+                showPage('home');
+            }
+        }
+
+        // Initial page load logic
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home'); // Show the home page first
+        });
+
+    </script>
+</body>
+</html>
+
