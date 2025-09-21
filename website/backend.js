@@ -18,6 +18,19 @@ const pool = mysql.createPool({
     database: "s1_private"
 });
 
+// Test the database connection when the server starts
+async function testDbConnection() {
+    try {
+        const connection = await pool.getConnection();
+        console.log('Koneksi database berhasil!');
+        connection.release(); // Release the connection
+    } catch (error) {
+        console.error('Koneksi database GAGAL! Periksa kembali kredensial Anda.');
+        console.error('Detail kesalahan:', error.message);
+    }
+}
+testDbConnection();
+
 // Endpoint untuk registrasi UCP
 app.post('/api/register', async (req, res) => {
     const { username, password, email } = req.body;
