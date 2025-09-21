@@ -32,24 +32,38 @@ async function testDbConnection() {
 testDbConnection();
 
 // Endpoint untuk registrasi UCP
+// Perhatian: Ganti req.ip dengan data dari body (misalnya, Discord ID)
 app.post('/api/register', async (req, res) => {
-    const { username, password, email } = req.body;
-    const ipAddress = req.ip; // Get the user's IP address
+    // Diasumsikan front-end akan mengirimkan `ucp`, `password`, dan `discordID`
+    const { ucp, password, discordID } = req.body; 
 
-    if (!username || !password || !email) {
-        return res.status(400).json({ message: "Semua bidang harus diisi." });
+    if (!ucp || !password || !discordID) {
+        return res.status(400).json({ message: "Semua bidang (ucp, password, discordID) harus diisi." });
     }
 
     try {
-        const [rows] = await pool.query('SELECT * FROM playerucp WHERE IP = ?', [ipAddress]);
+        // Periksa apakah Discord ID sudah terdaftar
+        const [rows] = await pool.query('SELECT * FROM playerucp WHERE discordID = ?', [discordID]);
 
         if (rows.length > 0) {
-            // Check if an account already exists for this IP
-            return res.status(409).json({ message: 'Perangkat ini sudah memiliki akun terdaftar.' });
+            return res.status(409).json({ message: 'Akun dengan Discord ID ini sudah terdaftar.' });
         }
 
-        // Insert the new user into the database
-        await pool.query('INSERT INTO playerucp (username, password, email, IP) VALUES (?, ?, ?, ?)', [username, password, email, ipAddress]);
+        // Catatan: Ini hanyalah contoh. Untuk keamanan, Anda harus
+        // menggunakan library seperti `bcrypt` untuk hash password dan salt.
+        // Di sini kita langsung memasukkan password.
+        const salt = null; // Contoh: `bcrypt.genSaltSync(10)`
+        const hashedPassword = password; // Contoh: `bcrypt.hashSync(password, salt)`
+        const verifycode = null;
+        const extra = null;
+        const reedeem = null;
+
+        // Insert pengguna baru ke database
+        // Kolom `ID` harusnya auto-increment, jadi tidak perlu disertakan
+        await pool.query(
+            'INSERT INTO playerucp (ucp, verifycode, discordID, password, salt, extradc, reedeem) VALUES (?, ?, ?, ?, ?, ?, ?)', 
+            [ucp, verifycode, discordID, hashedPassword, salt, extra, reedeem]
+        );
         
         res.status(201).json({ message: 'Pendaftaran berhasil!' });
 
@@ -61,10 +75,15 @@ app.post('/api/register', async (req, res) => {
 
 // Endpoint untuk melihat detail UCP
 app.get('/api/view', async (req, res) => {
-    const ipAddress = req.ip;
+    // Diasumsikan front-end akan mengirimkan `discordID`
+    const { discordID } = req.query; // Menggunakan query string untuk GET request
+
+    if (!discordID) {
+        return res.status(400).json({ message: 'Discord ID harus diberikan.' });
+    }
 
     try {
-        const [rows] = await pool.query('SELECT username, email FROM playerucp WHERE IP = ?', [ipAddress]);
+        const [rows] = await pool.query('SELECT ucp, discordID FROM playerucp WHERE discordID = ?', [discordID]);
 
         if (rows.length === 0) {
             return res.status(404).json({ message: 'Akun tidak ditemukan.' });
@@ -80,10 +99,15 @@ app.get('/api/view', async (req, res) => {
 
 // Endpoint untuk menghapus UCP
 app.delete('/api/delete', async (req, res) => {
-    const ipAddress = req.ip;
+    // Diasumsikan front-end akan mengirimkan `discordID`
+    const { discordID } = req.body;
+
+    if (!discordID) {
+        return res.status(400).json({ message: 'Discord ID harus diberikan.' });
+    }
 
     try {
-        const [result] = await pool.query('DELETE FROM playerucp WHERE IP = ?', [ipAddress]);
+        const [result] = await pool.query('DELETE FROM playerucp WHERE discordID = ?', [discordID]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Tidak ada akun yang ditemukan untuk dihapus.' });
