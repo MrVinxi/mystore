@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Utama - Hope Indonesia Roleplay</title>
+    <style>
+        @font-face {
+            font-family: 'SanAndreas';
+            src: url('https://fonts.cdnfonts.com/s/17232/San_Andreas.woff') format('woff');
+        }
+
+        :root {
+            --text-color: #ffffff;
+            --container-bg: rgba(0, 0, 0, 0.5); /* Lebih transparan */
+            --border-color: rgba(255, 255, 255, 0.2);
+            --highlight-color: #f7a01d; /* Oranye khas GTA */
+        }
+
+        body {
+            font-family: 'SanAndreas', sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.gazduirejocuri.ro/img/pic3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .header, .nav, .content-section {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--container-bg);
+            backdrop-filter: blur(5px);
+            border: 2px solid var(--border-color);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--highlight-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .nav a {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: var(--highlight-color);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-section {
+            margin-top: 0;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--highlight-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--highlight-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .content-section p, .content-section li {
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-section li {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--highlight-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hope Indonesia Roleplay</h1>
+        <p>Pusat Informasi & Pendaftaran Akun Roleplay Anda.</p>
+    </div>
+
+    <nav class="nav">
+        <a href="home.html" class="active">Beranda</a>
+        <a href="panel-ucp.html">Buat Akun</a>
+        <a href="info-akun.html">Info Akun</a>
+    </nav>
+
+    <div class="content-section">
+        <h2>Informasi Penting</h2>
+        <p>
+            Platform ini didedikasikan untuk mempermudah manajemen akun Roleplay Anda. Anda dapat mendaftar, memverifikasi, dan melihat detail akun Anda dengan mudah. Pastikan Anda membaca dan memahami semua peraturan yang berlaku sebelum memulai.
+        </p>
+        <p>
+            Kami sangat menganjurkan Anda untuk menggunakan ID Discord yang valid dan aktif, karena kode verifikasi akan dikirimkan melalui Direct Message (DM) Discord. Jika Anda mengalami kesulitan, silakan hubungi tim dukungan kami melalui saluran resmi.
+        </p>
+    </div>
+
+    <div class="content-section">
+        <h2>Peraturan & Larangan Roleplay</h2>
+        <p>Berikut adalah beberapa peraturan dasar yang harus dipatuhi untuk menjaga pengalaman bermain yang adil dan menyenangkan bagi semua:</p>
+        <ul>
+            <li>
+                <strong>Powergaming:</strong> Dilarang melakukan tindakan yang tidak realistis atau tidak mungkin dilakukan oleh karakter Anda secara fisik.
+            </li>
+            <li>
+                <strong>Metagaming:</strong> Dilarang menggunakan informasi dari luar dunia Roleplay (OOC - Out Of Character) untuk keuntungan dalam permainan (IC - In Character).
+            </li>
+            <li>
+                <strong>Mixing:</strong> Hindari mencampuradukkan percakapan OOC dan IC. Gunakan saluran yang tepat untuk setiap jenis komunikasi.
+            </li>
+            <li>
+                <strong>Deathmatch:</strong> Dilarang membunuh karakter lain tanpa alasan Roleplay yang kuat dan sesuai dengan cerita.
+            </li>
+            <li>
+                <strong>Robbing & Scamming:</strong> Harus dilakukan dengan alasan Roleplay yang valid dan tidak berlebihan.
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
