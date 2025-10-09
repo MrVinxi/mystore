@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melvin Fondation - Solusi Pemrograman & Cloud Server Modern</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #007bff; /* Biru Neon */
+            --secondary-color: #00bcd4; /* Cyan/Aqua */
+            --dark-bg: #111827; /* Darker Blue/Black */
+            --card-bg: #1f2937; /* Slightly Lighter Card */
+            --light-text: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--light-text); background-color: var(--dark-bg); scroll-behavior: smooth; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigasi Bar */
+        .navbar { background-color: rgba(17, 24, 39, 0.95); backdrop-filter: blur(8px); position: sticky; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo a { font-size: 1.8rem; font-weight: 900; color: var(--secondary-color); text-decoration: none; text-shadow: 0 0 8px rgba(0, 188, 212, 0.7); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--light-text); text-decoration: none; font-weight: 600; margin-left: 30px; padding: 5px 0; transition: color 0.3s ease, border-bottom 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--secondary-color); }
+
+        /* Hero Section */
+        #hero { padding: 180px 0 100px; min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at top right, rgba(0, 188, 212, 0.1), transparent 50%), var(--dark-bg); }
+        .hero-content { max-width: 900px; }
+        .hero-content h1 { font-size: 4.8rem; margin-bottom: 20px; line-height: 1.1; font-weight: 900; background: linear-gradient(90deg, var(--white), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-content p { font-size: 1.4rem; margin-bottom: 40px; color: #a1a1aa; }
+        
+        .cta-button { background-color: var(--primary-color); color: var(--white); padding: 15px 40px; border-radius: 8px; font-size: 1.2rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4); }
+        .cta-button:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6); }
+
+        /* Section Styling */
+        section { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 15px; }
+        .section-title p { color: #9ca3af; font-size: 1.1rem; }
+        
+        /* Image Section */
+        #gambar-anda { background-color: var(--card-bg); }
+        .image-container { display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+        .image-text { 
+            max-width: 30%; /* DIKURANGI AGAR GAMBAR MUAT LEBIH BANYAK */ 
+        }
+        .image-text h3 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 20px; }
+        .image-text p { font-size: 1rem; color: #c4c4c4; }
+        .uploaded-image { 
+            max-width: 65%; /* DIPERBESAR LAGI DARI 55% */
+            height: auto; 
+            border-radius: 12px; 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); 
+        }
+        
+        /* Fitur Utama */
+        .fitur-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-card { background-color: var(--card-bg); padding: 35px; border-radius: 10px; text-align: center; border: 1px solid #374151; transition: all 0.4s ease; }
+        .feature-card:hover { background-color: #2e3b4f; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); border-color: var(--primary-color); }
+        .feature-card i { font-size: 3rem; color: var(--secondary-color); margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.6rem; color: var(--white); margin-bottom: 10px; }
+        
+        /* Footer */
+        .footer { background-color: #10101b; color: #9ca3af; padding: 40px 0 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-links a { color: var(--secondary-color); text-decoration: none; margin: 0 15px; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--primary-color); }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 992px) {
+            /* Navigasi Mobile */
+            .menu-toggle { display: block; }
+            .nav-links { position: fixed; top: 70px; left: 0; width: 100%; height: 100vh; background-color: var(--dark-bg); flex-direction: column; padding: 20px 0; transform: translateX(-100%); align-items: flex-start; }
+            .nav-links.active { transform: translateX(0); }
+            .nav-links a { margin: 15px 0; padding: 10px 20px; width: 100%; text-align: left; border-bottom: none; font-size: 1.2rem; }
+            .nav-links .cta-button { margin: 20px 20px 0 20px; width: calc(100% - 40px); }
+
+            /* Hero Mobile */
+            #hero { padding: 120px 0 60px; min-height: auto; text-align: center; }
+            .hero-content h1 { font-size: 3.5rem; text-align: center; }
+            .hero-content p { font-size: 1.1rem; text-align: center; }
+
+            /* Image Section Mobile */
+            .image-container { flex-direction: column; }
+            .image-text { max-width: 100%; text-align: center; }
+            .uploaded-image { max-width: 95%; /* DIBUAT HAMPIR SEPENUH LAYAR MOBILE */ }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">Melvin Fondation</a>
+                </div>
+                <nav class="nav-links" id="navLinks">
+                    <a href="index.html" class="active">Beranda</a>
+                    <a href="layanan.html">Pengembangan</a>
+                    <a href="cloud.html">Cloud Server</a>
+                    <a href="kontak.html">Kontak</a>
+                    <a href="kontak.html" class="cta-button" style="margin-left: 20px;">Mulai Proyek</a>
+                </nav>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <h1>Kekuatan Digital di Ujung Jari Anda.</h1>
+                <p>Kami menyediakan solusi terintegrasi: <strong>Pemrograman Kustom, Manajemen Cloud Server, dan Desain Website Modern</strong> yang mendorong bisnis Anda melesat.</p>
+                <a href="layanan.html" class="cta-button" data-aos="zoom-in" data-aos-delay="600">Jelajahi Solusi Kami <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gambar-anda">
+        <div class="container">
+             <div class="image-container">
+                <div class="image-text" data-aos="fade-right" data-aos-delay="200">
+                    <h3>Dari Konsep Hingga Peluncuran</h3>
+                    <p>Tim kami bekerja dengan metodologi Agile, memastikan setiap proyek <strong>pemrograman</strong>, <strong>instalasi server</strong>, dan <strong>pembuatan website</strong> diselesaikan dengan presisi tinggi dan sesuai tenggat waktu.</p>
+                    <p style="margin-top: 15px;"><strong>Fokus kami:</strong> Keamanan, Kecepatan, dan Skalabilitas.</p>
+                </div>
+                <div data-aos="fade-left" data-aos-delay="400">
+                    <img src="melvin-logo.png" alt="Ilustrasi Desain Pemrograman Modern" class="uploaded-image" width="450" height="auto">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="fitur">
+        <div class="container">
+            <div class="section-title" data-aos="fade-down">
+                <h2>Mengapa Memilih Melvin Fondation?</h2>
+                <p>Kami menggabungkan keahlian developer dan administrator server untuk hasil yang optimal.</p>
+            </div>
+            
+            <div class="fitur-cards">
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-code"></i>
+                    <h3>Kode Bersih & Skalabel</h3>
+                    <p>Kode yang terstruktur untuk kemudahan pengembangan dan <strong>maintenance</strong> di masa depan.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Manajemen Cloud</h3>
+                    <p>Optimasi dan pengawasan penuh pada <strong>VPS</strong> dan <strong>Cloud Server</strong> untuk performa terbaik.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Desain Responsif</h3>
+                    <p>Desain UI/UX yang modern, profesional, dan tampil sempurna di semua perangkat.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Beranda</a> |
+                <a href="layanan.html">Pengembangan</a> |
+                <a href="cloud.html">Cloud Server</a> |
+                <a href="kontak.html">Kontak</a> |
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+            <p style="margin-top: 20px;">Hak Cipta &copy; 2025 Melvin Fondation. Solusi Teknologi Anda.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 120, duration: 800, easing: 'ease-in-out', once: true });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

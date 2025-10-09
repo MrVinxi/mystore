@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Cloud Server & VPS | Melvin Fondation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* CSS umum */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #00bcd4;
+            --dark-bg: #111827; 
+            --card-bg: #1f2937;
+            --light-text: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--light-text); background-color: var(--dark-bg); scroll-behavior: smooth; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Navigasi */
+        .navbar { background-color: rgba(17, 24, 39, 0.95); backdrop-filter: blur(8px); position: sticky; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo a { font-size: 1.8rem; font-weight: 900; color: var(--secondary-color); text-decoration: none; text-shadow: 0 0 8px rgba(0, 188, 212, 0.7); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--light-text); text-decoration: none; font-weight: 600; margin-left: 30px; padding: 5px 0; transition: color 0.3s ease, border-bottom 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--secondary-color); }
+        
+        .cta-button { background-color: var(--primary-color); color: var(--white); padding: 10px 25px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4); }
+        
+        /* Cloud Section */
+        section { padding: 80px 0; }
+        
+        #cloud-header { padding-top: 150px; text-align: center; background: radial-gradient(circle at top, rgba(0, 188, 212, 0.1), transparent 50%); }
+        #cloud-header h1 { font-size: 3.5rem; color: var(--secondary-color); margin-bottom: 15px; }
+        #cloud-header p { font-size: 1.3rem; color: #a1a1aa; max-width: 800px; margin: 0 auto 30px; }
+
+        .fitur-server-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
+        .fitur-card { background-color: var(--card-bg); padding: 30px; border-radius: 10px; text-align: center; border: 1px solid #374151; transition: all 0.4s ease; }
+        .fitur-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); }
+        .fitur-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 15px; }
+        .fitur-card h3 { font-size: 1.6rem; color: var(--white); margin-bottom: 10px; }
+        .fitur-card p { color: #c4c4c4; font-size: 0.95rem; }
+
+        .management-list { max-width: 900px; margin: 60px auto 0; }
+        .management-list h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 30px; text-align: center; }
+        .management-list ul { list-style: none; padding-left: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .management-list ul li { background-color: #2a3442; padding: 20px; border-radius: 8px; border-left: 3px solid var(--secondary-color); display: flex; align-items: center; }
+        .management-list ul li i { font-size: 1.5rem; color: var(--secondary-color); margin-right: 15px; }
+        
+        /* Footer */
+        .footer { background-color: #10101b; color: #9ca3af; padding: 40px 0 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 992px) {
+            /* Navigasi Mobile */
+            .menu-toggle { display: block; }
+            .nav-links { position: fixed; top: 70px; left: 0; width: 100%; height: 100vh; background-color: var(--dark-bg); flex-direction: column; padding: 20px 0; transform: translateX(-100%); align-items: flex-start; }
+            .nav-links.active { transform: translateX(0); }
+            .nav-links a { margin: 15px 0; padding: 10px 20px; width: 100%; text-align: left; border-bottom: none; font-size: 1.2rem; }
+            .nav-links .cta-button { margin: 20px 20px 0 20px; width: calc(100% - 40px); }
+
+            /* Cloud Mobile */
+            #cloud-header { padding-top: 120px; }
+            #cloud-header h1 { font-size: 2.8rem; }
+            #cloud-header p { font-size: 1.1rem; }
+            .fitur-server-grid { grid-template-columns: 1fr; gap: 20px; }
+            .management-list ul { grid-template-columns: 1fr; }
+            .management-list h2 { font-size: 1.8rem; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">Melvin Fondation</a>
+                </div>
+                <nav class="nav-links" id="navLinks">
+                    <a href="index.html">Beranda</a>
+                    <a href="layanan.html">Pengembangan</a>
+                    <a href="cloud.html" class="active">Cloud Server</a>
+                    <a href="kontak.html">Kontak</a>
+                    <a href="kontak.html" class="cta-button" style="margin-left: 20px;">Mulai Proyek</a>
+                </nav>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="cloud-header">
+        <div class="container" data-aos="fade-down">
+            <h1>VPS & Cloud Server Management</h1>
+            <p>Jaminan kecepatan, keamanan, dan skalabilitas untuk aplikasi dan website krusial Anda. Kami mengurus infrastruktur, Anda fokus pada <strong>bisnis</strong>.</p>
+            <a href="kontak.html" class="cta-button">Konsultasi Server Gratis <i class="fas fa-microchip"></i></a>
+        </div>
+    </section>
+
+    <section id="server-detail">
+        <div class="container">
+            <div class="fitur-server-grid">
+                
+                <div class="fitur-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-server"></i>
+                    <h3>VPS KVM Berkecepatan Tinggi</h3>
+                    <p>Penyediaan server virtual dengan teknologi KVM untuk performa <strong>dedicated</strong> dan latensi rendah.</p>
+                </div>
+                
+                <div class="fitur-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Keamanan Terkelola</h3>
+                    <p>Instalasi dan konfigurasi firewall, audit keamanan rutin, dan proteksi <strong>DDoS</strong> dasar.</p>
+                </div>
+                
+                <div class="fitur-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Optimasi Performa</h3>
+                    <p>Penyetelan sistem operasi (Linux/Windows) dan <strong>caching</strong> untuk waktu respons aplikasi yang sangat cepat.</p>
+                </div>
+
+                <div class="fitur-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-database"></i>
+                    <h3>Backup Otomatis</h3>
+                    <p>Implementasi sistem <strong>backup data</strong> harian/mingguan yang andal dan mudah dipulihkan.</p>
+                </div>
+                
+            </div>
+
+            <div class="management-list" data-aos="fade-up" data-aos-delay="500">
+                <h2>Layanan Setup & Maintenance Server</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Setup Web Server (Nginx/Apache)</li>
+                    <li><i class="fas fa-check-circle"></i> Konfigurasi <strong>SSL/TLS</strong> (Let's Encrypt)</li>
+                    <li><i class="fas fa-check-circle"></i> Monitoring Uptime 24/7</li>
+                    <li><i class="fas fa-check-circle"></i> Pembaruan OS & Patch Keamanan</li>
+                </ul>
+            </div>
+            
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Beranda</a> |
+                <a href="layanan.html">Pengembangan</a> |
+                <a href="cloud.html">Cloud Server</a> |
+                <a href="kontak.html">Kontak</a>
+            </div>
+            <p style="margin-top: 20px;">Hak Cipta &copy; 2025 Melvin Fondation. Solusi Teknologi Anda.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 120, duration: 800, easing: 'ease-in-out', once: true });
+        
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

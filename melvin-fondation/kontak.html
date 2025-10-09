@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - Melvin Fondation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* CSS umum */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #00bcd4;
+            --dark-bg: #111827;
+            --card-bg: #1f2937;
+            --light-text: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--light-text); background-color: var(--dark-bg); scroll-behavior: smooth; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Navigasi */
+        .navbar { background-color: rgba(17, 24, 39, 0.95); backdrop-filter: blur(8px); position: sticky; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo a { font-size: 1.8rem; font-weight: 900; color: var(--secondary-color); text-decoration: none; text-shadow: 0 0 8px rgba(0, 188, 212, 0.7); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--light-text); text-decoration: none; font-weight: 600; margin-left: 30px; padding: 5px 0; transition: color 0.3s ease, border-bottom 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.8rem; color: var(--secondary-color); }
+        
+        .cta-button { background-color: var(--primary-color); color: var(--white); padding: 10px 25px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4); }
+        
+        /* Kontak Section */
+        section { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; padding-top: 50px; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 15px; }
+        .section-title p { color: #9ca3af; font-size: 1.1rem; }
+        
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding-top: 30px; }
+        .contact-info { background-color: var(--card-bg); padding: 40px; border-radius: 10px; }
+        .contact-info h3, .contact-form h3 { color: var(--primary-color); margin-bottom: 20px; font-size: 2rem; }
+        .contact-info p { margin-bottom: 25px; display: flex; align-items: flex-start; color: #c4c4c4; }
+        .contact-info p i { color: var(--secondary-color); margin-right: 15px; font-size: 1.8rem; margin-top: 3px; }
+        .contact-info .hours p { margin-bottom: 10px; }
+        
+        .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea { 
+            width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #374151; 
+            border-radius: 8px; background-color: #2a3442; color: var(--light-text); 
+            font-family: 'Inter', sans-serif; transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary-color); outline: none; }
+        .contact-form textarea { resize: vertical; min-height: 180px; }
+        .contact-form button { background-color: var(--secondary-color); color: var(--dark-bg); border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: 700; transition: background-color 0.3s ease, transform 0.3s ease; }
+        .contact-form button:hover { background-color: #00a3b8; transform: translateY(-1px); }
+        
+        /* Footer */
+        .footer { background-color: #10101b; color: #9ca3af; padding: 40px 0 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 992px) {
+            /* Navigasi Mobile */
+            .menu-toggle { display: block; }
+            .nav-links { position: fixed; top: 70px; left: 0; width: 100%; height: 100vh; background-color: var(--dark-bg); flex-direction: column; padding: 20px 0; transform: translateX(-100%); align-items: flex-start; }
+            .nav-links.active { transform: translateX(0); }
+            .nav-links a { margin: 15px 0; padding: 10px 20px; width: 100%; text-align: left; border-bottom: none; font-size: 1.2rem; }
+            .nav-links .cta-button { margin: 20px 20px 0 20px; width: calc(100% - 40px); }
+
+            /* Kontak Mobile */
+            .section-title h2 { font-size: 2.2rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-info { padding: 30px; }
+            .contact-form button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">Melvin Fondation</a>
+                </div>
+                <nav class="nav-links" id="navLinks">
+                    <a href="index.html">Beranda</a>
+                    <a href="layanan.html">Pengembangan</a>
+                    <a href="cloud.html">Cloud Server</a>
+                    <a href="kontak.html" class="active">Kontak</a>
+                    <a href="kontak.html" class="cta-button" style="margin-left: 20px;">Mulai Proyek</a>
+                </nav>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="kontak" style="min-height: 80vh;">
+        <div class="container">
+            <div class="section-title" data-aos="fade-down">
+                <h2>Mari Mulai Proyek Anda</h2>
+                <p>Jelaskan kebutuhan Anda, dan kami akan memberikan solusi <strong>teknologi</strong> terbaik dengan segera.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Detail Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Kantor Pusat Digital</strong><br> Jakarta, Indonesia</p>
+                    <p><i class="fas fa-phone"></i> <strong>+62 858 1691 2868</strong> (Telepon/WA)</p>
+                    <p><i class="fas fa-envelope"></i> <strong>melvinfondation@gmail.com</strong></p>
+                    
+                    <h3 style="margin-top: 40px;">Jam Kerja</h3>
+                    <p class="hours">Senin - Jumat: 09:00 - 17:00 WIB</p>
+                </div>
+                
+                <div class="contact-form" data-aos="fade-left">
+                    <h3>Hubungi Kami Sekarang</h3>
+                    <form action="#" method="POST">
+                        <input type="text" name="name" placeholder="Nama Lengkap" required>
+                        <input type="email" name="email" placeholder="Email Aktif" required>
+                        <input type="text" name="subject" placeholder="Subjek Layanan (Pengembangan/Cloud Server)" required>
+                        <textarea name="message" placeholder="Jelaskan Proyek Anda Secara Detail..." required></textarea>
+                        <button type="submit">Kirim Pesan Sekarang</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Beranda</a> |
+                <a href="layanan.html">Pengembangan</a> |
+                <a href="cloud.html">Cloud Server</a> |
+                <a href="kontak.html">Kontak</a> |
+                <a href="#">Portofolio</a>
+            </div>
+            <p style="margin-top: 20px;">Hak Cipta &copy; 2025 Melvin Fondation. Solusi Teknologi Anda.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 120, duration: 800, easing: 'ease-in-out', once: true });
+        
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
