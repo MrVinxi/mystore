@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisah Kita ❤️ [Nama Panggilan]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS TERMASUK DI SINI (INLINE CSS) --- */
+        
+        /* WARNA PALET LEMBUT & RESET */
+        :root {
+            --primary-pink: #ff69b4; /* Hot Pink */
+            --light-pink: #ffc0cb; /* Light Pink */
+            --soft-white: #fffafa; /* Hampir Putih */
+            --text-dark: #333;
+            --text-soft: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--soft-white);
+        }
+
+        /* ANIMASI HEARTBEAT */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* HEADER/HERO SECTION */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            filter: brightness(70%) grayscale(10%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: #fff;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .main-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5em;
+            margin-bottom: 5px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            /* Terapkan Heartbeat pada judul utama */
+            animation: heartbeat 2s infinite; 
+        }
+        
+        /* Typing Effect CSS */
+        .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 15px;
+            border-right: 2px solid rgba(255, 255, 255, .75); /* Cursor */
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* SECTION UMUM */
+        .section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: var(--primary-pink);
+            margin-bottom: 40px;
+            font-weight: 700;
+            border-bottom: 3px solid var(--light-pink);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* BIODATA SECTION */
+        .profile-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-pink);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid var(--light-pink);
+        }
+
+        .profile-card h3 {
+            color: var(--primary-pink);
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+        }
+
+        /* TIMELINE SECTION */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px 0;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--light-pink);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-item:nth-child(even) { left: 50%; }
+
+        .timeline-content {
+            background-color: #fff0f5;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            background-color: var(--light-pink);
+            color: white;
+        }
+
+
+        /* QUOTE SECTION */
+        .love-quote {
+            font-style: italic;
+            font-size: 1.5em;
+            color: var(--text-soft);
+            max-width: 700px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
+        }
+
+        .love-quote cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: var(--primary-pink);
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--light-pink);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .main-title { font-size: 3em; }
+            .subtitle { font-size: 1.2em; }
+            .profile-grid { flex-direction: column; align-items: center; }
+            .profile-card { width: 90%; }
+            .timeline-container::after { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 60px; padding-right: 15px; left: 0 !important; }
+            .timeline-item::after { left: 13px; }
+            .love-quote { font-size: 1.2em; }
+        }
+
+        /* --- Akhir CSS --- */
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <img src="foto3.jpg" alt="Foto Kami Berdua" class="hero-img">
+        <div class="hero-content">
+            <h1 class="main-title">Kisah Kita.</h1>
+            <h2 id="typing-text" class="subtitle"></h2>
+            <p class="tagline">Sejak: <span id="anniversary-date">05/07/2023</span></p>
+        </div>
+    </header>
+
+    <main>
+        <section id="biodata" class="section biodata-section">
+            <h2 class="section-title">Kenalan Singkat</h2>
+            <div class="profile-grid">
+                <div class="profile-card me">
+                    <img src="foto2.jpg" alt="Foto Saya" class="profile-photo">
+                    <h3>Marvinando</h3>
+                    <p class="role">Sang Pemuja</p>
+                    <p class="bio-text">Hobi: Baca Buku</p>
+                    <p class="bio-text">Suka: Kopi Pagi</p>
+                </div>
+                <div class="profile-card partner">
+                    <img src="foto1.jpg" alt="Foto Kekasih" class="profile-photo">
+                    <h3>Nafrizatu</h3>
+                    <p class="role">Sang Kekasih Hati</p>
+                    <p class="bio-text">Hobi: Melukis</p>
+                    <p class="bio-text">Suka: Senja & Cokelat</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="section timeline-section">
+            <h2 class="section-title">Linimasa Kenangan Kita 🗓️</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>20 Agust 2024: Kencan Pertama</h4>
+                        <p>Kita bertemu di kafe kecil itu. Obrolan yang mengubah segalanya.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="left: 50%;">
+                    <div class="timeline-content">
+                        <h4>03 Sep 2024: Momen "Jadian"</h4>
+                        <p>Di bawah bintang, kamu bertanya. Hari paling bahagia!</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>10 Des 2024: Liburan Impian</h4>
+                        <p>Petualangan tak terlupakan di [Nama Tempat]. Kenangan yang manis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" class="section quote-section">
+            <h2 class="section-title">Pesan Tulus</h2>
+            <blockquote class="love-quote">
+                "Setiap detik bersamamu adalah lembaran terbaik dari hidupku. Terima kasih telah hadir, cahaya hidupku."
+                <cite>- Selalu dariku, [Nama Anda]</cite>
+            </blockquote>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | Dibuat dengan Cinta &hearts; untukmu.</p>
+    </footer>
+
+    <script>
+        // Data yang akan ditampilkan dengan efek ketikan
+        const textToType = "Sebuah Kisah Takdir yang Manis.";
+        const element = document.getElementById('typing-text');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < textToType.length) {
+                element.innerHTML += textToType.charAt(i);
+                i++;
+                // Kecepatan ketikan (100 milidetik)
+                setTimeout(typeWriter, 100); 
+            } else {
+                // Tambahkan efek blink cursor setelah selesai mengetik (opsional)
+                element.style.borderRight = 'none'; 
+            }
+        }
+
+        // Jalankan fungsi setelah halaman dimuat
+        window.onload = typeWriter;
+
+        // Catatan: Pastikan Anda mengganti placeholder gambar
+        // ganti 'foto-pasangan.jpg', 'foto-saya.jpg', dan 'foto-dia.jpg' dengan file gambar Anda
+    </script>
+
+</body>
+</html>
