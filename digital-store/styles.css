@@ -1,0 +1,367 @@
+/* styles.css - MODERN DARK MODE & NEON BLUE THEME */
+
+/* === FONT IMPORT === */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+/* === VARIABEL WARNA (Inspirasi Futuristik) === */
+:root {
+    --primary-color: #00BFFF; /* Neon Blue (Deep Sky Blue) */
+    --secondary-color: #1a2a4b; /* Dark Navy/Blue */
+    --background-dark: #121212; /* Very Dark Gray */
+    --text-light: #f5f5f5;
+    --text-muted: #aaaaaa;
+    --shadow-neon: 0 0 10px rgba(0, 191, 255, 0.6), 0 0 20px rgba(0, 191, 255, 0.4);
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --border-radius-lg: 16px;
+    --border-radius-sm: 8px;
+}
+
+/* === KEYFRAME ANIMATIONS === */
+@keyframes neon-glow {
+    from { text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color); }
+    to { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px #008cff; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === UMUM === */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-dark);
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.6;
+    animation: fadeIn 0.5s ease-out;
+}
+
+h1, h2, h3, h4 {
+    color: var(--text-light);
+    font-weight: 800;
+}
+
+/* Header dan Navigasi */
+.header {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 15px 0;
+    box-shadow: var(--shadow-neon); /* Neon shadow for header */
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.nav-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.nav-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+#cart-count {
+    animation: neon-glow 1.5s infinite alternate;
+    font-weight: bold;
+}
+
+/* Kartu & Kontainer */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 30px;
+}
+
+.card {
+    background-color: var(--secondary-color);
+    padding: 25px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 30px;
+    border: 1px solid rgba(0, 191, 255, 0.2); /* Soft neon border */
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-neon); /* Stronger neon glow on hover */
+}
+
+/* Tombol Aksi */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+    border: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    background-color: #00E5EE; /* Lighter neon blue */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.6);
+}
+
+.btn-primary:disabled {
+    background-color: #333;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Form Controls */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    box-sizing: border-box;
+    background-color: #2c2c2c;
+    color: var(--text-light);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    border-color: #00E5EE;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.8);
+    outline: none;
+}
+
+
+/* === KHUSUS BERANDA (index.html) === */
+.balance-card {
+    background: linear-gradient(135deg, var(--primary-color), #0077b3);
+    color: var(--background-dark);
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-neon);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    animation: fadeIn 0.8s ease-out;
+}
+.balance-card h3 {
+    color: var(--background-dark);
+    font-size: 2.2em;
+}
+.balance-card small {
+    font-weight: 600;
+}
+.balance-card .btn-primary {
+    background-color: var(--background-dark);
+    color: var(--primary-color);
+    box-shadow: var(--shadow-soft);
+}
+.balance-card .btn-primary:hover {
+    background-color: #333;
+}
+
+.main-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    text-align: center;
+}
+.menu-item {
+    padding: 20px 10px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    background-color: #222;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-light);
+}
+.menu-item:hover {
+    background-color: #2c2c2c;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+.menu-item img { 
+    width: 40px; 
+    margin-bottom: 10px; 
+    filter: drop-shadow(0 0 3px var(--primary-color));
+}
+.menu-item small {
+    font-weight: 600;
+}
+
+
+/* Product Grid (Katalog & Featured) */
+.product-grid {
+    display: grid; 
+    gap: 25px; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.product-card {
+    text-align: left; 
+    padding: 15px; 
+    cursor: default;
+    background-color: #2c2c2c;
+    border: 1px solid #333;
+    border-radius: var(--border-radius-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), var(--shadow-neon);
+}
+
+.product-card img {
+    width: 100%; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: var(--border-radius-sm); 
+    margin-bottom: 10px;
+    border: 1px solid var(--primary-color);
+}
+
+.product-card h4 {
+    color: var(--text-light);
+    margin: 0 0 5px 0;
+    font-weight: 600;
+}
+
+.product-card p {
+    color: var(--primary-color); 
+    font-weight: bold; 
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* === KHUSUS KERANJANG (cart.html) === */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    animation: fadeIn 0.4s ease-out;
+}
+.cart-item:last-child { border-bottom: none; }
+
+.cart-item img { 
+    width: 60px; 
+    height: 60px; 
+    object-fit: cover; 
+    border-radius: 50%; /* Circle image */
+    margin-right: 15px; 
+    border: 2px solid var(--primary-color);
+}
+.item-details { flex-grow: 1; }
+.item-details p { color: var(--text-muted); }
+
+.item-controls { display: flex; align-items: center; gap: 10px; }
+.item-controls button { 
+    width: 35px; 
+    height: 35px; 
+    border: none;
+    background: var(--primary-color); 
+    color: var(--background-dark);
+    cursor: pointer; 
+    border-radius: 50%;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.item-controls button:hover {
+    background-color: #00E5EE;
+    transform: scale(1.1);
+}
+.item-controls span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.total-summary h3 {
+    border-top: 2px dashed #333;
+    padding-top: 15px;
+}
+
+
+/* === KHUSUS CHECKOUT (checkout.html) === */
+.payment-method {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #222;
+}
+.payment-method:hover { 
+    background-color: #2c2c2c; 
+    border-color: var(--primary-color); 
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
+}
+.payment-method input[type="radio"] { 
+    margin-right: 15px; 
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+    top: 2px;
+    transition: all 0.2s;
+}
+.payment-method input[type="radio"]:checked {
+    background-color: var(--primary-color);
+    border-color: #00E5EE;
+    box-shadow: 0 0 5px var(--primary-color);
+}
+.payment-method label { 
+    flex-grow: 1; 
+    font-weight: 600; 
+}
+.payment-method img { 
+    border-radius: 4px; 
+    filter: grayscale(10%) brightness(1.2); 
+}
+
+.total-box {
+    padding: 25px;
+    background-color: #222;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    margin-bottom: 30px;
+    border: 2px solid var(--primary-color);
+}
+.total-box h2 {
+    font-size: 2.5em;
+    animation: neon-glow 1.5s infinite alternate;
+}
+
+/* === KHUSUS ADMIN (admin.html) === */
+.login-card {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #1a1a1a;
+}
+.login-card h2 { color: var(--primary-color); }

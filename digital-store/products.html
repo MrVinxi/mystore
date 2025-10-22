@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semua Produk - Toko Digital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <h2 style="margin: 0; color: var(--primary-color);">🛍️ Katalog Produk</h2>
+            <div class="nav-links">
+                <a href="index.html">Beranda</a>
+                <a href="products.html">Katalog</a>
+                <a href="cart.html">Keranjang (<span id="cart-count">0</span>)</a>
+                <a href="admin.html">Dev Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="color: var(--primary-color);">Semua Produk Kami</h1>
+        <p style="color: var(--text-muted);">Jelajahi seluruh koleksi produk digital dan pulsa.</p>
+        
+        <section class="card">
+            <div id="all-products" class="product-grid">
+                <p style="color: var(--text-muted);">Memuat produk...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

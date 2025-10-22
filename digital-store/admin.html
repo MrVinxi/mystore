@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Developer Access</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <h2 style="margin: 0; color: var(--primary-color);">⚙️ Developer Dashboard</h2>
+            <div class="nav-links">
+                <a href="index.html">Kembali ke Toko</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="admin-content">
+            <div class="login-card card">
+                <h2 style="color: var(--primary-color);">Akses Developer</h2>
+                <p style="color: var(--text-muted);">Masukkan sandi developer untuk melanjutkan.</p>
+                <input type="password" id="admin-password" class="form-control" placeholder="Sandi Developer">
+                <button class="btn-primary" onclick="attemptLogin()">Masuk</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Memastikan login form tampil saat pertama kali
+        document.addEventListener('DOMContentLoaded', () => {
+             // Jika sudah login (melalui admin.html tanpa redirect), renderAdminPageContent akan dipanggil oleh attemptLogin.
+             // Tidak ada perubahan di sini karena logika tetap berada di 'attemptLogin' yang dipicu onclick.
+        }); 
+    </script>
+</body>
+</html>

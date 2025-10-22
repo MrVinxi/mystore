@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <h2 style="margin: 0; color: var(--primary-color);">🛒 Keranjang Belanja</h2>
+            <div class="nav-links">
+                <a href="index.html">Beranda</a>
+                <a href="products.html">Katalog</a>
+                <a href="cart.html">Keranjang (<span id="cart-count">0</span>)</a>
+                <a href="admin.html">Dev Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="color: var(--primary-color);">Keranjang Anda</h1>
+        
+        <div class="card">
+            <div id="cart-list">
+                <p style="color: var(--text-muted);">Keranjang kosong...</p>
+            </div>
+
+            <div class="total-summary">
+                <h3 style="color: var(--primary-color);">Total Belanja: <span id="cart-total">Rp 0</span></h3>
+            </div>
+        </div>
+
+        <div class="checkout-btn-area" style="text-align: right;">
+            <button class="btn-primary" onclick="location.href='checkout.html'" style="padding: 12px 30px;">Lanjutkan ke Pembayaran</button>
+        </div>
+
+    </main>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>

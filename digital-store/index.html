@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Toko Pembayaran Digital</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <h2 style="margin: 0; color: var(--primary-color); animation: neon-glow 1.5s infinite alternate;">🌐 Toko Digital NEON</h2>
+            <div class="nav-links">
+                <a href="index.html">Beranda</a>
+                <a href="products.html">Katalog</a>
+                <a href="cart.html">Keranjang (<span id="cart-count">0</span>)</a>
+                <a href="admin.html">Dev Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="notification-area" style="position: fixed; bottom: 20px; right: 20px; background-color: var(--primary-color); color: var(--background-dark); padding: 10px 20px; border-radius: var(--border-radius-sm); z-index: 1000; opacity: 0; transition: opacity 0.5s ease; font-weight: bold;"></div>
+
+        <div class="balance-card">
+            <div>
+                <small>Saldo Anda (Simulasi)</small>
+                <h3>Rp 1,500,000</h3>
+            </div>
+            <button class="btn-primary">Isi Saldo</button>
+        </div>
+
+        <h2 style="color: var(--primary-color);">Layanan & Menu Cepat</h2>
+        <div class="card">
+            <div class="main-menu-grid">
+                <a href="products.html" class="menu-item">
+                    <img src="https://via.placeholder.com/40?text=P" alt="Pulsa">
+                    <small>Pulsa</small>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <img src="https://via.placeholder.com/40?text=D" alt="Data">
+                    <small>Paket Data</small>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <img src="https://via.placeholder.com/40?text=V" alt="Voucher">
+                    <small>Voucher Game</small>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <img src="https://via.placeholder.com/40?text=L" alt="Lainnya">
+                    <small>Lainnya</small>
+                </a>
+            </div>
+        </div>
+        
+        <h2 style="color: var(--primary-color);">🔥 Penawaran Terbaik</h2>
+        <section class="card">
+            <div id="featured-products" class="product-grid">
+                </div>
+        </section>
+
+    </main>
+    
+    <script src="scripts.js"></script>
+    <style>
+        /* Gaya tambahan untuk notifikasi toast */
+        #notification-area.show {
+            opacity: 1;
+        }
+    </style>
+</body>
+</html>
