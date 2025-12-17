@@ -2,15 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Routing Mastery - Marvinando Praditya</title>
     <style>
-        /* Modern Reset & Variables */
         :root {
             --primary: #2563eb;
             --dark: #0f172a;
-            --slate: #475569;
-            --bg: #f1f5f9;
+            --bg: #e2e8f0;
             --white: #ffffff;
         }
 
@@ -21,91 +18,78 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
             background-color: var(--bg);
-            color: var(--dark);
-            line-height: 1.6;
-            padding: 10px; /* Padding kecil untuk layar HP */
+            padding: 40px 0;
+            /* Memastikan body minimal selebar konten desktop kita */
+            min-width: 950px; 
+            display: flex;
+            justify-content: center;
         }
 
-        /* Container Utama Responsif */
-        .main-container {
-            max-width: 900px;
-            margin: 20px auto;
+        /* Lebar dikunci pada 900px agar layout tidak pecah di layar kecil */
+        .desktop-container {
             background: var(--white);
-            border-radius: 20px;
+            width: 900px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* Header Adaptif */
         header {
             background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
         header h1 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ukuran teks fleksibel */
+            font-size: 2.8rem;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Area Gambar Responsif */
-        .image-section {
-            padding: 20px;
-            text-align: center;
-            background: #f8fafc;
+        .content {
+            padding: 40px;
         }
 
-        .img-wrapper {
-            background: white;
-            padding: 10px;
+        /* Area Gambar Berbingkai */
+        .image-frame {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
             border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            display: inline-block;
-            width: 100%;
+            padding: 15px;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        .img-wrapper img {
-            max-width: 100%;
+        .image-frame img {
+            width: 100%; /* Mengikuti lebar frame */
             height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
+            border-radius: 6px;
         }
 
-        /* Konten Utama */
-        .content-body {
-            padding: 30px 20px;
-        }
-
-        .description {
-            margin-bottom: 30px;
+        .image-caption {
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--dark);
             font-size: 1.1rem;
-            color: var(--slate);
         }
 
-        /* Grid System: 1 Kolom di HP, 2 Kolom di Desktop */
+        /* Grid selalu 2 kolom */
         .routing-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Default HP */
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
             margin-bottom: 40px;
-        }
-
-        @media (min-width: 768px) {
-            .routing-grid {
-                grid-template-columns: 1fr 1fr; /* Desktop mode */
-            }
-            body { padding: 40px 20px; }
         }
 
         .card {
             padding: 25px;
-            border-radius: 15px;
-            border-bottom: 5px solid var(--primary);
+            border-radius: 12px;
             background: #f8fafc;
+            border-left: 6px solid var(--primary);
         }
 
         .card h3 {
@@ -113,120 +97,98 @@
             color: var(--primary);
         }
 
-        /* Tabel Responsif */
-        .table-container {
-            overflow-x: auto; /* Scroll horizontal jika tabel terlalu lebar di HP */
-            margin-top: 20px;
-        }
-
+        /* Tabel Standar Desktop */
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px; /* Menjaga tabel tetap terbaca */
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 15px;
+            padding: 18px;
+            border: 1px solid #cbd5e1;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
         }
 
         th {
             background-color: var(--primary);
             color: white;
+            font-weight: bold;
         }
 
-        /* Credit Footer */
         footer {
             background: var(--dark);
             color: #94a3b8;
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
         }
 
         footer strong {
-            color: var(--white);
+            color: white;
             display: block;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-top: 10px;
-            letter-spacing: 1px;
-        }
-
-        .tagline {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            display: block;
         }
     </style>
 </head>
 <body>
 
-<div class="main-container">
+<div class="desktop-container">
     <header>
-        <h1>Arsitektur Routing Jaringan</h1>
-        <p>Optimasi Jalur Data Secara Efisien</p>
+        <h1>Routing Jaringan Komputer</h1>
+        <p>Analisis Konfigurasi Multi-Router & Gateway</p>
     </header>
 
-    <div class="image-section">
-        <div class="img-wrapper">
-            <img src="routing1.png" alt="Topologi Jaringan Routing">
-            <p style="margin-top:10px; font-size: 0.9rem; color: #64748b;">Analisis Topologi: Hubungan antar Router dan PC Client</p>
-        </div>
-    </div>
-
-    <div class="content-body">
-        <div class="description">
-            Routing adalah proses kunci dalam jaringan komputer untuk menentukan jalur terbaik bagi paket data dari sumber ke tujuan. Berdasarkan topologi di atas, pemilihan metode routing sangat krusial.
+    <div class="content">
+        <div class="image-frame">
+            <img src="routing1.png" alt="Topologi Routing">
+            <div class="image-caption">Gambar 1.1: Visualisasi Koneksi antar Router (Static & Dynamic)</div>
         </div>
 
         <div class="routing-grid">
             <div class="card">
                 <h3>Routing Statis</h3>
-                <p>Jalur dikonfigurasi secara manual oleh administrator. Sangat stabil dan hemat resource hardware karena router tidak perlu memproses algoritma rute secara terus-menerus.</p>
+                <p>Jalur data ditentukan secara manual oleh administrator. Sangat efisien untuk topologi seperti gambar di atas yang memiliki rute yang jelas dan tidak sering berubah.</p>
             </div>
-            <div class="card" style="border-bottom-color: #10b981;">
+            <div class="card" style="border-left-color: #10b981;">
                 <h3>Routing Dinamis</h3>
-                <p>Menggunakan protokol (seperti OSPF/EIGRP) untuk mencari jalur secara otomatis. Mampu melakukan pemulihan jalur (rerouting) secara instan jika ada kabel yang putus.</p>
+                <p>Router saling bertukar informasi tabel routing menggunakan protokol khusus. Jika salah satu router (misal Router1) mati, sistem akan otomatis mencari rute alternatif.</p>
             </div>
         </div>
 
-        <h2>Perbandingan Teknis</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fitur</th>
-                        <th>Statis</th>
-                        <th>Dinamis</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Intervensi Admin</td>
-                        <td>Tinggi (Manual)</td>
-                        <td>Rendah (Otomatis)</td>
-                    </tr>
-                    <tr>
-                        <td>Update Jalur</td>
-                        <td>Tidak Adaptif</td>
-                        <td>Sangat Responsif</td>
-                    </tr>
-                    <tr>
-                        <td>Kebutuhan CPU</td>
-                        <td>Sangat Ringan</td>
-                        <td>Cukup Intensif</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <h2>Tabel Perbandingan Teknis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter Perbandingan</th>
+                    <th>Routing Statis</th>
+                    <th>Routing Dinamis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Konfigurasi</strong></td>
+                    <td>Manual (Satu per satu)</td>
+                    <td>Otomatis (Protokol)</td>
+                </tr>
+                <tr>
+                    <td><strong>Skalabilitas</strong></td>
+                    <td>Terbatas (Hanya Jaringan Kecil)</td>
+                    <td>Sangat Luas (Internet/ISP)</td>
+                </tr>
+                <tr>
+                    <td><strong>Penggunaan CPU</strong></td>
+                    <td>Sangat Ringan</td>
+                    <td>Membutuhkan Pemrosesan Tinggi</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <footer>
-        <span class="tagline">Expert Network Insight by</span>
+        Diterbitkan Secara Eksklusif oleh:
         <strong>MARVINANDO PRADITYA PUTRA KARYANA</strong>
-        <p style="margin-top: 15px; font-size: 0.8rem;">&copy; 2025 Jaringan Komputer Modern. Semua Hak Dilindungi.</p>
+        Edukasi Jaringan Komputer &copy; 2025
     </footer>
 </div>
 
